@@ -63,6 +63,8 @@
       align-items:center;
       justify-content:space-between;
       gap:18px;
+      flex-wrap:wrap;
+      padding:10px 0;
     }
 
     .brand{
@@ -86,10 +88,6 @@
       box-shadow:var(--shadow);
     }
 
-    .brand-text{
-      min-width:0;
-    }
-
     .brand-text strong{
       display:block;
       font-size:16px;
@@ -106,9 +104,14 @@
     .nav{
       display:flex;
       align-items:center;
-      gap:24px;
+      gap:18px;
       color:var(--muted);
       font-size:14px;
+      flex-wrap:wrap;
+    }
+
+    .nav a{
+      padding:6px 0;
     }
 
     .nav a:hover{color:var(--ink)}
@@ -490,8 +493,6 @@
     }
 
     @media (max-width: 900px){
-      .nav{display:none}
-      .top-button{display:none}
       .hero-grid,
       .about-text,
       .two-col,
@@ -508,10 +509,18 @@
       .section-head p{
         margin-top:12px;
       }
+      .header-inner{
+        align-items:flex-start;
+      }
+      .nav{
+        width:100%;
+        order:3;
+        padding-top:4px;
+      }
     }
 
     @media (max-width: 640px){
-      .header-inner{min-height:72px}
+      .header-inner{min-height:auto}
       .hero{padding:24px 0 16px}
       .hero-content,
       .section-card,
@@ -536,6 +545,13 @@
       }
       .footer-inner{
         flex-direction:column;
+      }
+      .top-button{
+        width:100%;
+      }
+      .nav{
+        gap:14px;
+        font-size:13px;
       }
     }
   </style>
@@ -715,50 +731,6 @@
               <p>
                 Не получить совет на бегу, а разобраться в себе глубже и увидеть, как устроены ваши внутренние процессы.
               </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-head">
-            <div>
-              <div class="eyebrow">подход и инструменты</div>
-              <h2>Как я <em>работаю</em></h2>
-            </div>
-            <p>
-              Основу составляет психодинамический подход. Дополнительные методы я использую бережно и только тогда, когда они действительно уместны для запроса.
-            </p>
-          </div>
-
-          <div class="cards-grid">
-            <article class="info-card">
-              <div class="label">основной метод</div>
-              <h3>Психодинамическая психотерапия</h3>
-              <p>
-                Работа с внутренними конфликтами, чувствами, отношениями и неочевидными причинами повторяющихся жизненных сценариев.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <div class="label">дополнительно</div>
-              <h3>КИП, КПТ, арт-терапия</h3>
-              <p>
-                В зависимости от запроса могут подключаться кататимно-имагинативная психотерапия, когнитивные техники и арт-терапевтические инструменты.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <div class="label">отдельные форматы</div>
-              <h3>Метафорические практики</h3>
-              <ul>
-                <li>метафорические марафоны;</li>
-                <li>«Хранители состояний»;</li>
-                <li>полиграфия для настройки на нужное состояние.</li>
-              </ul>
             </article>
           </div>
         </div>
