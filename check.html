@@ -418,7 +418,10 @@
         let total = 0;
         let dominantKey = 'thoughts';
         let dominantValue = -1;
+
         let allOnes = true;
+        let onlyOneAndTwo = true;
+        let hasTwo = false;
 
         ranges.forEach(range => {
           const value = Number(range.value);
@@ -427,6 +430,14 @@
 
           if (value !== 1) {
             allOnes = false;
+          }
+
+          if (value > 2) {
+            onlyOneAndTwo = false;
+          }
+
+          if (value === 2) {
+            hasTwo = true;
           }
 
           const key = range.closest('.question').dataset.key;
@@ -439,6 +450,12 @@
         if (allOnes) {
           title.textContent = 'Всё хорошо.';
           text.textContent = 'Сейчас нагрузка выглядит стабильно.';
+          return;
+        }
+
+        if (onlyOneAndTwo && hasTwo) {
+          title.textContent = 'Всё хорошо.';
+          text.textContent = 'Сейчас нагрузка выглядит практически стабильно.';
           return;
         }
 
