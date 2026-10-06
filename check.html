@@ -24,8 +24,6 @@
       --gradient:linear-gradient(135deg,#6f3e22 0%, #9b572b 42%, #c9793d 74%, #e2a46f 100%);
       --shadow:0 20px 60px rgba(58,36,23,.08);
       --radius-xl:34px;
-      --radius-lg:24px;
-      --radius-md:18px;
       --container:min(920px, calc(100% - 32px));
     }
 
@@ -359,11 +357,10 @@
             </div>
           </div>
 
-          <div class="result" id="resultBox">
+          <div class="result">
             <strong id="resultTitle">Сейчас вам уже нужна пауза</strong>
             <p id="resultText">
-              Похоже, нагрузка заметна. Даже короткая остановка, снижение темпа и возможность спокойно
-              поговорить о том, что происходит с вами, могут дать больше опоры.
+              Похоже, нагрузка заметна. Даже короткая остановка, снижение темпа и возможность спокойно поговорить о том, что происходит с вами, могут дать больше опоры.
             </p>
           </div>
 
@@ -419,13 +416,18 @@
 
       function updateResult() {
         let total = 0;
-        let dominantKey = null;
+        let dominantKey = 'thoughts';
         let dominantValue = -1;
+        let allOnes = true;
 
         ranges.forEach(range => {
           const value = Number(range.value);
           total += value;
           range.closest('.question').querySelector('[data-value]').textContent = value;
+
+          if (value !== 1) {
+            allOnes = false;
+          }
 
           const key = range.closest('.question').dataset.key;
           if (value > dominantValue) {
@@ -433,6 +435,12 @@
             dominantKey = key;
           }
         });
+
+        if (allOnes) {
+          title.textContent = 'Всё хорошо.';
+          text.textContent = 'Сейчас нагрузка выглядит стабильно.';
+          return;
+        }
 
         const average = Math.round(total / ranges.length);
         const dominant = messages[dominantKey];
