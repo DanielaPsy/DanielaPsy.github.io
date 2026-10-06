@@ -4,63 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Даниэла Шандлоренко — психолог, арт-терапевт, преподаватель психологии</title>
-  <meta name="description" content="Даниэла Шандлоренко — практикующий психолог, арт-терапевт, преподаватель психологии. Онлайн и очно в Санкт-Петербурге.">
+  <meta name="description" content="Даниэла Шандлоренко — психолог, арт-терапевт, преподаватель психологии. Индивидуальные консультации онлайн и очно в Санкт-Петербурге.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#fbfdfb;
-      --paper:#ffffff;
-      --ink:#12324a;
-      --muted:#667b8c;
-      --line:rgba(18,50,74,.12);
-      --accent:#1fb7c7;
-      --accent-2:#45d7a7;
-      --lime:#b8ef57;
-      --soft:#edf8f4;
-      --soft-2:#e9f5fb;
-      --gradient:linear-gradient(135deg,#b8ef57 0%,#45d7a7 45%,#22bbd0 72%,#5e91ec 100%);
-      --shadow:0 20px 60px rgba(18,50,74,.08);
-      --radius:28px;
+      --bg:#f6eee8;
+      --paper:#fffaf6;
+      --card:#fffdfb;
+      --ink:#3a2417;
+      --muted:#7b6457;
+      --line:rgba(58,36,23,.12);
+      --accent:#b86632;
+      --accent-dark:#8a4923;
+      --accent-soft:#edd8c7;
+      --sand:#f2e5d9;
+      --warm:#f8efe7;
+      --gradient:linear-gradient(135deg,#6f3e22 0%, #9b572b 42%, #c9793d 74%, #e2a46f 100%);
+      --shadow:0 20px 60px rgba(58,36,23,.08);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --container:min(1180px, calc(100% - 32px));
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family:Manrope,Arial,sans-serif;
-      color:var(--ink);
+      font-family:Roboto, Arial, sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(69,215,167,.10), transparent 28%),
-        radial-gradient(circle at top right, rgba(34,187,208,.08), transparent 30%),
+        radial-gradient(circle at top left, rgba(201,121,61,.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(111,62,34,.06), transparent 26%),
         var(--bg);
-      line-height:1.55;
+      color:var(--ink);
+      line-height:1.6;
     }
 
+    img{display:block;max-width:100%}
     a{text-decoration:none;color:inherit}
-    img{max-width:100%;display:block}
 
-    .container{
-      width:min(1180px, calc(100% - 32px));
-      margin:0 auto;
-    }
+    .container{width:var(--container);margin:0 auto}
 
-    .site-header{
+    .header{
       position:sticky;
       top:0;
       z-index:30;
       backdrop-filter:blur(12px);
-      background:rgba(251,253,251,.88);
+      background:rgba(255,250,246,.88);
       border-bottom:1px solid var(--line);
     }
 
     .header-inner{
+      min-height:78px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:18px;
-      min-height:78px;
     }
 
     .brand{
@@ -75,13 +77,13 @@
       height:46px;
       border-radius:16px;
       background:var(--gradient);
+      color:#fffaf6;
       display:grid;
       place-items:center;
-      color:#0f2a3d;
-      font-weight:800;
+      font-weight:900;
       font-size:15px;
-      box-shadow:var(--shadow);
       flex:0 0 auto;
+      box-shadow:var(--shadow);
     }
 
     .brand-text{
@@ -91,78 +93,118 @@
     .brand-text strong{
       display:block;
       font-size:16px;
-      line-height:1.2;
+      line-height:1.15;
     }
 
     .brand-text span{
       display:block;
       font-size:12px;
       color:var(--muted);
-      margin-top:2px;
+      margin-top:3px;
     }
 
     .nav{
       display:flex;
       align-items:center;
       gap:24px;
-      font-size:14px;
       color:var(--muted);
+      font-size:14px;
     }
 
     .nav a:hover{color:var(--ink)}
 
-    .header-cta{
+    .top-button,
+    .button{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:12px 18px;
+      gap:10px;
+      border:none;
       border-radius:999px;
-      font-weight:800;
+      padding:15px 22px;
+      font-weight:700;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+
+    .top-button:hover,
+    .button:hover{transform:translateY(-2px)}
+
+    .top-button,
+    .button.primary{
       background:var(--gradient);
-      color:#102b42;
-      box-shadow:0 12px 28px rgba(34,187,208,.18);
-      white-space:nowrap;
+      color:#fffaf6;
+      box-shadow:0 14px 30px rgba(111,62,34,.18);
+    }
+
+    .button.secondary{
+      background:var(--paper);
+      color:var(--ink);
+      border:1px solid var(--line);
+    }
+
+    .button.ghost{
+      background:transparent;
+      color:var(--ink);
+      border:1px solid var(--line);
     }
 
     .hero{
-      padding:56px 0 28px;
+      padding:42px 0 24px;
     }
 
     .hero-grid{
       display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:32px;
+      grid-template-columns:0.88fr 1.12fr;
+      gap:24px;
       align-items:stretch;
     }
 
-    .hero-card,
-    .glass-card,
+    .hero-photo,
+    .hero-content,
     .section-card,
-    .format-card,
+    .contact-card,
     .cta-card{
-      background:rgba(255,255,255,.82);
       border:1px solid var(--line);
+      border-radius:var(--radius-xl);
       box-shadow:var(--shadow);
-      border-radius:var(--radius);
+      background:rgba(255,253,251,.88);
     }
 
-    .hero-card{
-      padding:34px;
+    .hero-photo{
+      overflow:hidden;
+      min-height:640px;
+      background:#e7d5c7;
+      position:relative;
+    }
+
+    .hero-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 18%;
+    }
+
+    .hero-content{
+      padding:36px;
       background:
-        radial-gradient(circle at top left, rgba(69,215,167,.13), transparent 32%),
-        rgba(255,255,255,.88);
+        radial-gradient(circle at top right, rgba(201,121,61,.10), transparent 26%),
+        rgba(255,253,251,.92);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
     }
 
     .eyebrow{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      font-size:12px;
-      font-weight:800;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      color:#199e96;
       margin-bottom:18px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:900;
+      color:var(--accent-dark);
     }
 
     .eyebrow::before{
@@ -178,16 +220,17 @@
       margin:0;
       line-height:1.08;
       letter-spacing:-.03em;
-      color:var(--ink);
-    }
-
-    h1,h2{
-      font-family:Comfortaa,Manrope,sans-serif;
     }
 
     h1{
-      font-size:clamp(34px,5vw,64px);
+      font-size:clamp(36px, 5vw, 64px);
       margin-bottom:14px;
+      font-weight:900;
+    }
+
+    h2{
+      font-size:clamp(28px, 4vw, 48px);
+      font-weight:900;
     }
 
     h1 em,h2 em{
@@ -195,17 +238,18 @@
       color:var(--accent);
     }
 
-    .subtitle{
-      font-size:18px;
+    .hero-subtitle{
+      font-size:19px;
       font-weight:700;
       color:var(--ink);
       margin-bottom:18px;
     }
 
-    .lead{
+    .hero-lead{
       font-size:18px;
       color:var(--muted);
-      max-width:720px;
+      max-width:680px;
+      margin:0;
     }
 
     .hero-actions{
@@ -215,149 +259,72 @@
       margin-top:28px;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:15px 22px;
-      border-radius:999px;
-      font-weight:800;
-      border:1px solid transparent;
-      transition:.2s ease;
-      cursor:pointer;
-    }
-
-    .btn:hover{transform:translateY(-2px)}
-    .btn-primary{
-      background:var(--gradient);
-      color:#102b42;
-      box-shadow:0 14px 30px rgba(34,187,208,.18);
-    }
-
-    .btn-secondary{
-      background:#fff;
-      border-color:var(--line);
-      color:var(--ink);
-    }
-
-    .hero-meta{
+    .hero-tags{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
       margin-top:22px;
     }
 
-    .meta-pill{
+    .hero-tag{
       padding:10px 14px;
       border-radius:999px;
-      background:var(--soft);
-      border:1px solid rgba(69,215,167,.18);
-      color:var(--ink);
+      background:var(--sand);
+      border:1px solid rgba(184,102,50,.14);
       font-size:14px;
       font-weight:700;
-    }
-
-    .glass-card{
-      padding:28px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-height:100%;
-      background:
-        linear-gradient(160deg, rgba(237,248,244,.96), rgba(233,245,251,.94));
-    }
-
-    .portrait{
-      display:grid;
-      place-items:center;
-      min-height:240px;
-      border-radius:24px;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(184,239,87,.30), transparent 25%),
-        radial-gradient(circle at 70% 40%, rgba(34,187,208,.18), transparent 28%),
-        #ffffff;
-      border:1px solid rgba(18,50,74,.08);
-      margin-bottom:22px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .portrait-badge{
-      width:118px;
-      height:118px;
-      border-radius:32px;
-      display:grid;
-      place-items:center;
-      background:var(--gradient);
-      font-family:Comfortaa,Manrope,sans-serif;
-      font-size:40px;
-      font-weight:700;
-      color:#102b42;
-      box-shadow:0 18px 40px rgba(18,50,74,.12);
-    }
-
-    .quote{
-      font-size:18px;
-      font-weight:700;
       color:var(--ink);
-      margin-bottom:12px;
-    }
-
-    .quote-note{
-      color:var(--muted);
-      font-size:15px;
     }
 
     .section{
-      padding:26px 0;
+      padding:24px 0;
     }
 
     .section-card{
       padding:34px;
     }
 
-    .section-top{
+    .section-head{
       display:flex;
       justify-content:space-between;
       gap:24px;
-      align-items:flex-end;
+      align-items:end;
       margin-bottom:26px;
     }
 
-    .section-top p{
+    .section-head p{
       margin:0;
       max-width:560px;
       color:var(--muted);
+      font-size:16px;
     }
 
-    .stats{
+    .about-grid{
       display:grid;
       grid-template-columns:repeat(5,1fr);
       gap:14px;
-      margin-top:18px;
     }
 
-    .stat{
-      padding:20px;
-      border-radius:22px;
-      background:linear-gradient(160deg,#fff,#f8fcfb);
+    .about-item{
+      background:var(--card);
       border:1px solid var(--line);
+      border-radius:22px;
+      padding:20px;
     }
 
-    .stat strong{
+    .about-item strong{
       display:block;
-      font-size:14px;
-      color:#179f96;
-      margin-bottom:10px;
+      color:var(--accent-dark);
+      font-size:12px;
       text-transform:uppercase;
-      letter-spacing:.06em;
+      letter-spacing:.08em;
+      margin-bottom:10px;
     }
 
-    .stat span{
-      display:block;
+    .about-item span{
       font-size:15px;
       font-weight:700;
+      line-height:1.4;
     }
 
     .about-text{
@@ -380,30 +347,31 @@
     }
 
     .info-card{
-      padding:24px;
-      border-radius:24px;
+      background:var(--card);
       border:1px solid var(--line);
-      background:#fff;
+      border-radius:24px;
+      padding:24px;
     }
 
-    .info-card span{
+    .info-card .label{
       display:inline-block;
-      margin-bottom:12px;
       font-size:12px;
-      font-weight:800;
-      letter-spacing:.08em;
       text-transform:uppercase;
-      color:#159e9f;
+      letter-spacing:.08em;
+      font-weight:900;
+      color:var(--accent-dark);
+      margin-bottom:12px;
     }
 
     .info-card h3{
-      font-size:22px;
+      font-size:23px;
       margin-bottom:10px;
-      font-family:Comfortaa,Manrope,sans-serif;
+      font-weight:900;
     }
 
     .info-card p,
     .info-card li{
+      margin:0;
       color:var(--muted);
       font-size:15px;
     }
@@ -413,61 +381,67 @@
       padding-left:18px;
     }
 
-    .info-card li+li{margin-top:8px}
+    .info-card li + li{margin-top:8px}
 
-    .format-grid{
+    .two-col{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:18px;
     }
 
-    .format-card{
-      padding:26px;
-      background:#fff;
+    .contact-card{
+      padding:28px;
+      background:rgba(255,253,251,.92);
     }
 
-    .format-card h3{
-      font-size:24px;
-      font-family:Comfortaa,Manrope,sans-serif;
+    .contact-card h3{
+      font-size:28px;
       margin-bottom:12px;
+      font-weight:900;
     }
 
-    .format-list{
-      margin:16px 0 0;
-      padding:0;
+    .contact-card p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .list{
       list-style:none;
+      margin:18px 0 0;
+      padding:0;
     }
 
-    .format-list li{
+    .list li{
       padding:12px 0;
       border-top:1px solid var(--line);
       color:var(--muted);
-      font-weight:600;
+      font-weight:500;
     }
 
-    .format-list li strong{color:var(--ink)}
+    .list strong{color:var(--ink)}
 
     .price-box{
-      padding:20px;
-      border-radius:22px;
-      background:linear-gradient(160deg,#eef8f4,#ebf5fb);
-      border:1px solid rgba(18,50,74,.08);
       margin-top:18px;
+      background:var(--warm);
+      border:1px solid rgba(58,36,23,.08);
+      border-radius:22px;
+      padding:18px;
     }
 
     .price-box small{
       display:block;
-      color:#159e9f;
-      font-weight:800;
+      font-size:12px;
       text-transform:uppercase;
       letter-spacing:.08em;
+      font-weight:900;
+      color:var(--accent-dark);
       margin-bottom:8px;
     }
 
     .price-box strong{
       display:block;
       font-size:24px;
-      font-family:Comfortaa,Manrope,sans-serif;
+      line-height:1.2;
       margin-bottom:8px;
     }
 
@@ -479,15 +453,15 @@
     .cta-card{
       padding:34px;
       background:
-        radial-gradient(circle at top left, rgba(184,239,87,.20), transparent 30%),
-        linear-gradient(145deg,#f8fcfb,#eef8f4);
+        radial-gradient(circle at top left, rgba(201,121,61,.12), transparent 28%),
+        rgba(255,253,251,.94);
     }
 
     .cta-row{
       display:flex;
-      align-items:center;
       justify-content:space-between;
-      gap:22px;
+      align-items:center;
+      gap:24px;
     }
 
     .cta-row p{
@@ -497,7 +471,7 @@
     }
 
     .footer{
-      padding:30px 0 50px;
+      padding:28px 0 50px;
       color:var(--muted);
       font-size:14px;
     }
@@ -510,94 +484,65 @@
       padding-top:18px;
     }
 
-    @media (max-width: 980px){
+    @media (max-width: 1040px){
+      .about-grid{grid-template-columns:repeat(2,1fr)}
+      .cards-grid{grid-template-columns:1fr 1fr}
+    }
+
+    @media (max-width: 900px){
       .nav{display:none}
+      .top-button{display:none}
       .hero-grid,
       .about-text,
-      .cards-grid,
-      .format-grid,
-      .stats,
+      .two-col,
       .cta-row{
         grid-template-columns:1fr;
         display:grid;
       }
-
-      .cta-row{
-        gap:18px;
+      .hero-photo{
+        min-height:440px;
       }
-
-      .footer-inner{
-        flex-direction:column;
+      .section-head{
+        display:block;
+      }
+      .section-head p{
+        margin-top:12px;
       }
     }
 
     @media (max-width: 640px){
-      .header-inner{
-        min-height:72px;
-      }
-
-      .header-cta{
-        display:none;
-      }
-
-      .hero{
-        padding:28px 0 18px;
-      }
-
-      .hero-card,
-      .glass-card,
+      .header-inner{min-height:72px}
+      .hero{padding:24px 0 16px}
+      .hero-content,
       .section-card,
-      .format-card,
+      .contact-card,
       .cta-card{
         padding:22px;
-        border-radius:22px;
+        border-radius:24px;
       }
-
-      h1{
-        font-size:34px;
+      .hero-photo{
+        min-height:320px;
+        border-radius:24px;
       }
-
-      .subtitle,
-      .lead{
-        font-size:16px;
-      }
-
       .hero-actions{
         flex-direction:column;
       }
-
-      .btn{
+      .button{
         width:100%;
       }
-
-      .portrait{
-        min-height:180px;
+      .about-grid,
+      .cards-grid{
+        grid-template-columns:1fr;
       }
-
-      .portrait-badge{
-        width:92px;
-        height:92px;
-        font-size:30px;
-        border-radius:24px;
-      }
-
-      .section-top{
-        display:block;
-      }
-
-      .section-top p{
-        margin-top:12px;
-      }
-
-      .meta-pill{
-        font-size:13px;
+      .footer-inner{
+        flex-direction:column;
       }
     }
   </style>
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="header">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="На главную">
         <div class="brand-mark">DS</div>
@@ -607,14 +552,14 @@
         </div>
       </a>
 
-      <nav class="nav" aria-label="Навигация по сайту">
+      <nav class="nav" aria-label="Навигация">
         <a href="#about">Обо мне</a>
         <a href="#requests">С чем работаю</a>
         <a href="#formats">Формат</a>
         <a href="check.html">Проверить себя</a>
       </nav>
 
-      <a class="header-cta" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
+      <a class="top-button" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
         Записаться
       </a>
     </div>
@@ -623,302 +568,45 @@
   <main id="top">
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-card">
+        <div class="hero-photo">
+          <img src="daniela-main.jpg" alt="Даниэла Шандлоренко">
+        </div>
+
+        <div class="hero-content">
           <div class="eyebrow">онлайн и очно · Санкт-Петербург</div>
           <h1>Даниэла <em>Шандлоренко</em></h1>
-          <p class="subtitle">психолог, арт-терапевт, преподаватель психологии</p>
-          <p class="lead">
-            Работаю с тем, что лежит глубже слов: с повторяющимися сценариями, неясными чувствами,
-            внутренним напряжением и отношениями, которые годами не меняются, сколько бы сил в них ни вкладывалось.
+          <div class="hero-subtitle">психолог, арт-терапевт, преподаватель психологии</div>
+          <p class="hero-lead">
+            Работаю с тем, что лежит глубже слов: с повторяющимися сценариями, чувствами,
+            которые трудно объяснить, внутренним напряжением и отношениями, которые годами не меняются,
+            сколько бы сил в них ни вкладывалось.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
+            <a class="button primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
               Записаться в Telegram
             </a>
-            <a class="btn btn-secondary" href="check.html">
+            <a class="button secondary" href="check.html">
               Проверить себя
             </a>
-            <a class="btn btn-secondary" href="https://vk.ru/psyddsha" target="_blank" rel="noopener">
+            <a class="button ghost" href="https://vk.ru/psyddsha" target="_blank" rel="noopener">
               Группа ВК
             </a>
           </div>
 
-          <div class="hero-meta">
-            <div class="meta-pill">Консультация — 50 минут</div>
-            <div class="meta-pill">Индивидуально</div>
-            <div class="meta-pill">Онлайн и очно</div>
-            <div class="meta-pill">Санкт-Петербург</div>
+          <div class="hero-tags">
+            <div class="hero-tag">Индивидуальная работа</div>
+            <div class="hero-tag">50 минут</div>
+            <div class="hero-tag">Онлайн и очно</div>
+            <div class="hero-tag">Санкт-Петербург</div>
           </div>
         </div>
-
-        <aside class="glass-card">
-          <div class="portrait">
-  <img src="daniela-main.jpg" alt="Даниэла Шандлоренко">
-</div>
-          <div class="quote">
-            «Не советы, а пространство, где можно понять себя глубже».
-          </div>
-          <div class="quote-note">
-            Основной метод работы — психодинамическая психотерапия.
-            Дополнительно, по показаниям: КИП, КПТ, арт-терапия, метафорические карты.
-          </div>
-        </aside>
       </div>
     </section>
 
     <section class="section" id="about">
       <div class="container">
         <div class="section-card">
-          <div class="section-top">
+          <div class="section-head">
             <div>
-              <div class="eyebrow">обо мне</div>
-              <h2>Профессиональная <em>опора</em></h2>
-            </div>
-            <p>
-              Я практикующий психолог и преподаватель психологии в РАНХиГС.
-              Работаю в сфере психодинамической психотерапии, специализация — кататимно-имагинативная психотерапия.
-            </p>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>с 2018 года</strong>
-              <span>частная практика</span>
-            </div>
-            <div class="stat">
-              <strong>РАНХиГС</strong>
-              <span>преподаватель психологии</span>
-            </div>
-            <div class="stat">
-              <strong>VI форум</strong>
-              <span>председатель Санкт-Петербургского форума КИП-терапевтов</span>
-            </div>
-            <div class="stat">
-              <strong>СМИ</strong>
-              <span>спикер федеральных и региональных телеканалов</span>
-            </div>
-            <div class="stat">
-              <strong>книга</strong>
-              <span>автор книги «Управление жизнью»</span>
-            </div>
-          </div>
-
-          <div class="about-text">
-            <p>
-              Психодинамическая психотерапия — мой основной метод. Я прошла по нему полный курс,
-              включая сотни часов личной и супервизионной работы.
-            </p>
-            <p>
-              В работе я помогаю замечать внутренние механизмы, которые влияют на выбор, чувства,
-              отношения и ощущение себя в жизни.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="requests">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-top">
-            <div>
-              <div class="eyebrow">с чем работаю</div>
-              <h2>Ко мне обращаются, <em>когда</em></h2>
-            </div>
-            <p>
-              Если хочется не просто «справиться», а понять, почему жизнь снова и снова идёт по одному и тому же кругу.
-            </p>
-          </div>
-
-          <div class="cards-grid">
-            <article class="info-card">
-              <span>повторения</span>
-              <h3>Сценарии повторяются</h3>
-              <p>
-                Один и тот же болезненный круг в отношениях, выборе, реакциях или самоощущении.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>перегруженность</span>
-              <h3>В голове слишком много всего</h3>
-              <p>
-                Мысли не останавливаются, сложно переключиться, расслабиться и почувствовать опору.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>кризисы</span>
-              <h3>Жизнь меняется</h3>
-              <p>
-                Расставания, утраты, перемены, внутренние кризисы и сложные этапы, в которых важно не потерять себя.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>неудовлетворённость</span>
-              <h3>Не нравится, как всё устроено</h3>
-              <p>
-                Есть ощущение внутреннего тупика, усталости или неудовлетворённости жизнью в целом либо её отдельными сферами.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>самооценка</span>
-              <h3>Сложно опираться на себя</h3>
-              <p>
-                Проблемы с самооценкой мешают в отношениях, работе, самореализации и повседневных решениях.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>глубина</span>
-              <h3>Хочется понять себя</h3>
-              <p>
-                Не получить готовые советы, а увидеть свои внутренние процессы и начать по-настоящему слышать себя.
-              </p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-card">
-          <div class="section-top">
-            <div>
-              <div class="eyebrow">методы и направления</div>
-              <h2>Как я <em>работаю</em></h2>
-            </div>
-            <p>
-              Основной фокус — психодинамический подход. Дополнительные инструменты я подключаю бережно и только там, где они действительно уместны.
-            </p>
-          </div>
-
-          <div class="cards-grid">
-            <article class="info-card">
-              <span>основа</span>
-              <h3>Психодинамическая психотерапия</h3>
-              <p>
-                Работа с внутренними конфликтами, повторяющимися сценариями, отношениями и чувствами,
-                которые не всегда можно объяснить рационально.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>дополнительно</span>
-              <h3>КИП, КПТ, арт-терапия</h3>
-              <p>
-                В зависимости от запроса могут использоваться кататимно-имагинативная психотерапия,
-                когнитивно-поведенческие техники и арт-подход.
-              </p>
-            </article>
-
-            <article class="info-card">
-              <span>отдельные форматы</span>
-              <h3>Метафорические практики</h3>
-              <ul>
-                <li>метафорические марафоны;</li>
-                <li>«Хранители состояний»;</li>
-                <li>полиграфия для настройки на нужное состояние.</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="formats">
-      <div class="container">
-        <div class="format-grid">
-          <div class="format-card">
-            <div class="eyebrow">формат работы</div>
-            <h3>Индивидуальные консультации</h3>
-            <p style="margin:0;color:var(--muted);">
-              Подходят, если вы хотите глубже понять себя, снизить внутреннее напряжение
-              и постепенно изменить то, что долго не меняется.
-            </p>
-
-            <ul class="format-list">
-              <li><strong>Формат:</strong> онлайн и очно</li>
-              <li><strong>Город:</strong> Санкт-Петербург</li>
-              <li><strong>Длительность:</strong> 50 минут</li>
-              <li><strong>Связь:</strong> Telegram, VK, телефон</li>
-            </ul>
-
-            <div class="price-box">
-              <small>стоимость</small>
-              <strong>Цена будет добавлена позже</strong>
-              <p>Здесь можно будет в любой момент заменить текст на актуальную стоимость консультации.</p>
-            </div>
-          </div>
-
-          <div class="format-card">
-            <div class="eyebrow">контакты</div>
-            <h3>Как со мной связаться</h3>
-            <p style="margin:0;color:var(--muted);">
-              Можно написать в удобном формате и коротко описать запрос. Я отвечу и предложу подходящий вариант записи.
-            </p>
-
-            <div class="hero-actions" style="margin-top:20px;">
-              <a class="btn btn-primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
-                Написать в Telegram
-              </a>
-              <a class="btn btn-secondary" href="https://vk.ru/psyddsha" target="_blank" rel="noopener">
-                Перейти в группу ВК
-              </a>
-              <a class="btn btn-secondary" href="tel:+79643326432">
-                Позвонить: 8 964 332-64-32
-              </a>
-            </div>
-
-            <div class="price-box">
-              <small>самопроверка</small>
-              <strong>Можно начать с короткой диагностики</strong>
-              <p>На отдельной странице есть аккуратный блок «Проверить себя» с ползунками и мягким выводом по состоянию.</p>
-              <div style="margin-top:14px;">
-                <a class="btn btn-secondary" href="check.html">Открыть страницу «Проверить себя»</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="cta-card">
-          <div class="cta-row">
-            <div>
-              <div class="eyebrow">запись</div>
-              <h2>Если вам важно <em>понять себя</em>, а не просто получить совет</h2>
-              <p>
-                Можно написать мне в Telegram, перейти в группу ВК или сначала воспользоваться страницей «Проверить себя».
-              </p>
-            </div>
-
-            <div class="hero-actions" style="margin-top:0;">
-              <a class="btn btn-primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
-                Записаться
-              </a>
-              <a class="btn btn-secondary" href="check.html">
-                Проверить себя
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© Даниэла Шандлоренко</div>
-      <div>Психолог, арт-терапевт, преподаватель психологии · онлайн и очно, Санкт-Петербург</div>
-    </div>
-  </footer>
-
-</body>
-</html>
+              <div class="eyebrow">об
