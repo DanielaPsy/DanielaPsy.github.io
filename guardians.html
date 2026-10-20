@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Хранители состояний — авторский мерч Даниэлы Шандлоренко</title>
+  <meta name="description" content="Хранители состояний — авторский мерч Даниэлы Шандлоренко: значки, чашки, блокноты, еженедельники, метафорические карты, дневник самопрограммирования, наклейки, шопперы и подарочные наборы.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#f6eee8;
+      --paper:#fffaf6;
+      --card:#fffdfb;
+      --ink:#3a2417;
+      --muted:#7b6457;
+      --line:rgba(58,36,23,.12);
+      --accent:#b86632;
+      --accent-dark:#8a4923;
+      --sand:#f2e5d9;
+      --warm:#f8efe7;
+      --gradient:linear-gradient(135deg,#6f3e22 0%, #9b572b 42%, #c9793d 74%, #e2a46f 100%);
+      --shadow:0 20px 60px rgba(58,36,23,.08);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --container:min(1180px, calc(100% - 32px));
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(201,121,61,.08), transparent 28%),
+        radial-gradient(circle at top right, rgba(111,62,34,.06), transparent 26%),
+        var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+
+    img{display:block;max-width:100%}
+    a{text-decoration:none;color:inherit}
+    .container{width:var(--container);margin:0 auto}
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:30;
+      backdrop-filter:blur(12px);
+      background:rgba(255,250,246,.88);
+      border-bottom:1px solid var(--line);
+    }
+
+    .header-inner{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+      padding:10px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-width:0;
+    }
+
+    .brand-mark{
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      background:var(--gradient);
+      color:#fffaf6;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      font-size:15px;
+      flex:0 0 auto;
+      box-shadow:var(--shadow);
+    }
+
+    .brand-text strong{
+      display:block;
+      font-size:16px;
+      line-height:1.15;
+    }
+
+    .brand-text span{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin-top:3px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      color:var(--muted);
+      font-size:14px;
+      flex-wrap:wrap;
+    }
+
+    .nav a:hover{color:var(--ink)}
+
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:none;
+      border-radius:999px;
+      padding:15px 22px;
+      font-weight:700;
+      transition:.2s ease;
+      cursor:pointer;
+    }
+
+    .button:hover{transform:translateY(-2px)}
+
+    .button.primary{
+      background:var(--gradient);
+      color:#fffaf6;
+      box-shadow:0 14px 30px rgba(111,62,34,.18);
+    }
+
+    .button.secondary{
+      background:var(--paper);
+      color:var(--ink);
+      border:1px solid var(--line);
+    }
+
+    .hero{
+      padding:42px 0 24px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:0.95fr 1.05fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-photo,
+    .hero-content,
+    .section-card,
+    .product-card,
+    .cta-card{
+      border:1px solid var(--line);
+      border-radius:var(--radius-xl);
+      box-shadow:var(--shadow);
+      background:rgba(255,253,251,.9);
+    }
+
+    .hero-photo{
+      overflow:hidden;
+      min-height:640px;
+      background:#e7d5c7;
+    }
+
+    .hero-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center 20%;
+    }
+
+    .hero-content{
+      padding:36px;
+      background:
+        radial-gradient(circle at top right, rgba(201,121,61,.10), transparent 26%),
+        rgba(255,253,251,.92);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      margin-bottom:18px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-weight:900;
+      color:var(--accent-dark);
+    }
+
+    .eyebrow::before{
+      content:"";
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--gradient);
+      flex:0 0 auto;
+    }
+
+    h1,h2,h3{
+      margin:0;
+      line-height:1.08;
+      letter-spacing:-.03em;
+    }
+
+    h1{
+      font-size:clamp(38px, 5vw, 66px);
+      margin-bottom:14px;
+      font-weight:900;
+    }
+
+    h2{
+      font-size:clamp(28px, 4vw, 46px);
+      font-weight:900;
+    }
+
+    h3{
+      font-size:24px;
+      font-weight:900;
+    }
+
+    h1 em,h2 em{
+      font-style:normal;
+      color:var(--accent);
+    }
+
+    .hero-subtitle{
+      font-size:19px;
+      font-weight:700;
+      color:var(--ink);
+      margin-bottom:18px;
+    }
+
+    .hero-lead{
+      font-size:18px;
+      color:var(--muted);
+      max-width:680px;
+      margin:0;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .hero-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:22px;
+    }
+
+    .hero-tag{
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--sand);
+      border:1px solid rgba(184,102,50,.14);
+      font-size:14px;
+      font-weight:700;
+      color:var(--ink);
+    }
+
+    .section{
+      padding:24px 0;
+    }
+
+    .section-card{
+      padding:34px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      gap:24px;
+      align-items:end;
+      margin-bottom:26px;
+    }
+
+    .section-head p{
+      margin:0;
+      max-width:560px;
+      color:var(--muted);
+      font-size:16px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+
+    .about-item{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px;
+    }
+
+    .about-item strong{
+      display:block;
+      font-size:16px;
+      margin-bottom:8px;
+    }
+
+    .about-item p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+
+    .product-card{
+      padding:22px;
+      display:flex;
+      flex-direction:column;
+      min-height:100%;
+    }
+
+    .product-media{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      background:var(--warm);
+      aspect-ratio:4 / 3;
+      border:1px solid rgba(58,36,23,.08);
+      margin-bottom:18px;
+    }
+
+    .product-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+    }
+
+    .price{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:max-content;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--sand);
+      border:1px solid rgba(184,102,50,.14);
+      font-weight:800;
+      color:var(--accent-dark);
+      margin:14px 0 12px;
+    }
+
+    .product-card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .product-card ul{
+      margin:10px 0 0;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .carousel{
+      position:relative;
+      width:100%;
+      height:100%;
+    }
+
+    .carousel-slide{
+      position:absolute;
+      inset:0;
+      opacity:0;
+      transition:opacity .35s ease;
+      pointer-events:none;
+    }
+
+    .carousel-slide.active{
+      opacity:1;
+      pointer-events:auto;
+    }
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:42px;
+      height:42px;
+      border:none;
+      border-radius:50%;
+      background:rgba(255,250,246,.92);
+      color:var(--ink);
+      box-shadow:0 6px 20px rgba(58,36,23,.12);
+      cursor:pointer;
+      z-index:2;
+      display:grid;
+      place-items:center;
+      font-size:18px;
+      transition:.2s ease;
+    }
+
+    .carousel-btn:hover{transform:translateY(-50%) scale(1.04)}
+    .carousel-btn.prev{left:12px}
+    .carousel-btn.next{right:12px}
+
+    .carousel-dots{
+      position:absolute;
+      left:50%;
+      bottom:12px;
+      transform:translateX(-50%);
+      display:flex;
+      gap:8px;
+      z-index:2;
+    }
+
+    .carousel-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      border:none;
+      background:rgba(255,250,246,.75);
+      cursor:pointer;
+      padding:0;
+    }
+
+    .carousel-dot.active{
+      background:var(--accent-dark);
+    }
+
+    .cta-card{
+      padding:34px;
+      background:
+        radial-gradient(circle at top left, rgba(201,121,61,.12), transparent 28%),
+        rgba(255,253,251,.94);
+    }
+
+    .cta-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:24px;
+    }
+
+    .cta-row p{
+      margin:12px 0 0;
+      color:var(--muted);
+      max-width:720px;
+    }
+
+    .footer{
+      padding:28px 0 50px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .products-grid,
+      .cta-row,
+      .about-grid{
+        grid-template-columns:1fr;
+        display:grid;
+      }
+
+      .hero-photo{
+        min-height:420px;
+      }
+
+      .section-head{
+        display:block;
+      }
+
+      .section-head p{
+        margin-top:12px;
+      }
+    }
+
+    @media (max-width: 700px){
+      .header-inner{
+        min-height:auto;
+        align-items:flex-start;
+      }
+
+      .nav{
+        width:100%;
+        order:3;
+        font-size:13px;
+      }
+
+      .hero{
+        padding:24px 0 16px;
+      }
+
+      .hero-content,
+      .section-card,
+      .product-card,
+      .cta-card{
+        padding:22px;
+        border-radius:24px;
+      }
+
+      .hero-photo{
+        min-height:320px;
+        border-radius:24px;
+      }
+
+      .hero-actions,
+      .cta-row .hero-actions{
+        flex-direction:column;
+      }
+
+      .button{
+        width:100%;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="На главную">
+        <div class="brand-mark">DS</div>
+        <div class="brand-text">
+          <strong>Даниэла Шандлоренко</strong>
+          <span>психолог, арт-терапевт, преподаватель психологии</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Навигация">
+        <a href="index.html">Главная</a>
+        <a href="#about">О проекте</a>
+        <a href="#collection">Коллекция</a>
+      </nav>
+
+      <a class="button primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
+        Уточнить наличие
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-photo">
+          <img src="guardians-author.jpg" alt="Даниэла Шандлоренко">
+        </div>
+
+        <div class="hero-content">
+          <div class="eyebrow">авторский проект</div>
+          <h1><em>Хранители состояний</em></h1>
+          <div class="hero-subtitle">Авторские вещи и подарки, которые выбирают не случайно, а с внутренним откликом.</div>
+          <p class="hero-lead">
+            Меня зовут Даниэла Шандлоренко. Я психолог, арт-терапевт и преподаватель психологии.
+            «Хранители состояний» — это продолжение моей профессиональной и творческой работы:
+            авторские иллюстрации, предметы и наборы, которые помогают бережно соприкасаться с нужным состоянием,
+            выбирать опору для себя или дарить её близким.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
+              Написать в Telegram
+            </a>
+            <a class="button secondary" href="#collection">
+              Посмотреть коллекцию
+            </a>
+          </div>
+
+          <div class="hero-tags">
+            <div class="hero-tag">Авторские иллюстрации</div>
+            <div class="hero-tag">Осознанный выбор</div>
+            <div class="hero-tag">Подарки со смыслом</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">о проекте</div>
+              <h2>Это не случайные вещи, а <em>спутники состояния</em></h2>
+            </div>
+            <p>
+              Мне важно, чтобы человек выбирал своего Хранителя осознанно:
+              по внутреннему отклику, по настроению, по состоянию, которое хочется поддержать в себе
+              или подарить близкому человеку.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-item">
+              <strong>Личный смысл</strong>
+              <p>Каждый предмет — не просто мерч, а способ оставить рядом с собой нужное настроение, образ и внутреннюю опору.</p>
+            </div>
+
+            <div class="about-item">
+              <strong>Авторская иллюстрация</strong>
+              <p>Все «Хранители состояний» созданы как самостоятельные образы, к которым хочется возвращаться в повседневной жизни.</p>
+            </div>
+
+            <div class="about-item">
+              <strong>Для себя и в подарок</strong>
+              <p>Хранителя можно выбрать для себя или получить от близких как внимательный, тёплый и очень личный подарок.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="collection">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">коллекция</div>
+              <h2>Мерч <em>«Хранители состояний»</em></h2>
+            </div>
+            <p>
+              Ниже — основные позиции коллекции. Здесь нет корзины и оформления заказа:
+              страница создана, чтобы спокойно посмотреть всё в одном месте и выбрать то, что откликается именно вам.
+            </p>
+          </div>
+
+          <div class="products-grid">
+            <article class="product-card">
+              <div class="product-media">
+                <div class="carousel" data-carousel>
+                  <img class="carousel-slide active" src="badges-1.jpg" alt="Значок Хранители состояний — вариант 1">
+                  <img class="carousel-slide" src="badges-2.jpg" alt="Значок Хранители состояний — вариант 2">
+                  <img class="carousel-slide" src="badges-3.jpg" alt="Значок Хранители состояний — вариант 3">
+                  <img class="carousel-slide" src="badges-4.jpg" alt="Значок Хранители состояний — вариант 4">
+                  <img class="carousel-slide" src="badges-5.jpg" alt="Значок Хранители состояний — вариант 5">
+                  <img class="carousel-slide" src="badges-6.jpg" alt="Значок Хранители состояний — вариант 6">
+
+                  <button class="carousel-btn prev" type="button" aria-label="Предыдущий значок">‹</button>
+                  <button class="carousel-btn next" type="button" aria-label="Следующий значок">›</button>
+                  <div class="carousel-dots"></div>
+                </div>
+              </div>
+              <h3>Значки с авторской иллюстрацией</h3>
+              <div class="price">450 ₽</div>
+              <p>Небольшой предмет с характером и настроением — для сумки, рюкзака, одежды или как маленький подарок со смыслом.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <div class="carousel" data-carousel>
+                  <img class="carousel-slide active" src="mugs-1.jpg" alt="Чашка Хранители состояний — вариант 1">
+                  <img class="carousel-slide" src="mugs-2.jpg" alt="Чашка Хранители состояний — вариант 2">
+                  <img class="carousel-slide" src="mugs-3.jpg" alt="Чашка Хранители состояний — вариант 3">
+                  <img class="carousel-slide" src="mugs-4.jpg" alt="Чашка Хранители состояний — вариант 4">
+
+                  <button class="carousel-btn prev" type="button" aria-label="Предыдущая чашка">‹</button>
+                  <button class="carousel-btn next" type="button" aria-label="Следующая чашка">›</button>
+                  <div class="carousel-dots"></div>
+                </div>
+              </div>
+              <h3>Чашки</h3>
+              <div class="price">650 ₽</div>
+              <p>Для утренних ритуалов, паузы в течение дня и ощущения, что рядом есть знакомый образ, который поддерживает ваше состояние.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="notebooks.jpg" alt="Блокноты Хранители состояний">
+              </div>
+              <h3>Блокноты</h3>
+              <div class="price">650 ₽</div>
+              <p>Для заметок, наблюдений, мыслей, планов и внутренних опор, к которым хочется возвращаться.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="planners.jpg" alt="Еженедельники Хранители состояний">
+              </div>
+              <h3>Еженедельники</h3>
+              <div class="price">700 ₽</div>
+              <p>Эстетичный способ держать в поле зрения не только задачи, но и своё состояние в течение недели.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="cards-deck-1.jpg" alt="Первая колода метафорических карт Хранители состояний">
+              </div>
+              <h3>Колода метафорических карт I</h3>
+              <div class="price">1 000 ₽</div>
+              <p>Авторская колода для личной работы, размышлений, практик, консультаций и бережного контакта со своим внутренним состоянием.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="cards-deck-2.jpg" alt="Вторая колода метафорических карт Хранители состояний">
+              </div>
+              <h3>Колода метафорических карт II</h3>
+              <div class="price">1 000 ₽</div>
+              <p>Ещё одна самостоятельная колода со своим настроением и образами — для тех, кто хочет выбрать именно своего Хранителя.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="diary.jpg" alt="Дневник самопрограммирования Хранители состояний">
+              </div>
+              <h3>Дневник самопрограммирования</h3>
+              <div class="price">750 ₽</div>
+              <p>Для внимательной работы с мыслями, внутренними установками, привычками и состояниями, которые хочется поддерживать в себе.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="stickers.jpg" alt="Наклейки Хранители состояний">
+              </div>
+              <h3>Наклейки</h3>
+              <div class="price">350 ₽</div>
+              <p>Небольшие акценты для ноутбука, ежедневника, телефона или упаковки подарка — с теми же авторскими образами Хранителей.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="shoppers.jpg" alt="Шопперы Хранители состояний">
+              </div>
+              <h3>Шопперы</h3>
+              <div class="price">900 ₽</div>
+              <p>Практичная вещь на каждый день, которую приятно носить с собой как часть личной эстетики и настроения.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="gift-1800.jpg" alt="Подарочный набор Хранители состояний за 1800 рублей">
+              </div>
+              <h3>Подарочный набор</h3>
+              <div class="price">1 800 ₽</div>
+              <p>Небольшой, но уже очень цельный набор из мерча «Хранители состояний» — для себя или для тёплого подарка близкому человеку.</p>
+            </article>
+
+            <article class="product-card">
+              <div class="product-media">
+                <img src="gift-3000.jpg" alt="Подарочный набор Хранители состояний за 3000 рублей">
+              </div>
+              <h3>Подарочный набор</h3>
+              <div class="price">3 000 ₽</div>
+              <p>Расширенный набор из нескольких позиций коллекции — для более полного знакомства с проектом или особенного подарка со смыслом.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-row">
+            <div>
+              <div class="eyebrow">как выбрать</div>
+              <h2>Выбирайте своего <em>Хранителя</em> осознанно</h2>
+              <p>
+                Если вы хотите подобрать определённый образ, уточнить наличие или собрать подарочный набор,
+                можно написать мне в Telegram. Эта страница создана как эстетичная витрина проекта —
+                без спешки, чтобы выбор был действительно вашим.
+              </p>
+            </div>
+
+            <div class="hero-actions" style="margin-top:0;">
+              <a class="button primary" href="https://t.me/Daniela_Shandlorenko" target="_blank" rel="noopener">
+                Написать в Telegram
+              </a>
+              <a class="button secondary" href="index.html">
+                Вернуться на главный сайт
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© Даниэла Шандлоренко · «Хранители состояний»</div>
+      <div>Авторский проект с иллюстрациями, мерчем и подарками со смыслом</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const carousels = document.querySelectorAll('[data-carousel]');
+
+      carousels.forEach(function (carousel) {
+        const slides = Array.from(carousel.querySelectorAll('.carousel-slide'));
+        const prevBtn = carousel.querySelector('.prev');
+        const nextBtn = carousel.querySelector('.next');
+        const dotsWrap = carousel.querySelector('.carousel-dots');
+        let index = 0;
+
+        if (!slides.length) return;
+
+        slides.forEach(function (_, i) {
+          const dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', 'Перейти к изображению ' + (i + 1));
+          dot.addEventListener('click', function () {
+            goTo(i);
+          });
+          dotsWrap.appendChild(dot);
+        });
+
+        const dots = Array.from(dotsWrap.querySelectorAll('.carousel-dot'));
+
+        function goTo(newIndex) {
+          slides[index].classList.remove('active');
+          dots[index].classList.remove('active');
+
+          index = (newIndex + slides.length) % slides.length;
+
+          slides[index].classList.add('active');
+          dots[index].classList.add('active');
+        }
+
+        prevBtn.addEventListener('click', function () {
+          goTo(index - 1);
+        });
+
+        nextBtn.addEventListener('click', function () {
+          goTo(index + 1);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
